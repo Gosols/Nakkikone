@@ -1,0 +1,5 @@
+C:\Repos\Nakkikone\NakkikoneBackend\Nakkikone.WebApi\Nakkikone.Core\obj\Debug\net5.0\Nakkikone.Core.csprojAssemblyReference.cache
+C:\Repos\Nakkikone\NakkikoneBackend\Nakkikone.WebApi\Nakkikone.Core\obj\Debug\net5.0\Nakkikone.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Repos\Nakkikone\NakkikoneBackend\Nakkikone.WebApi\Nakkikone.Core\obj\Debug\net5.0\Nakkikone.Core.AssemblyInfoInputs.cache
+C:\Repos\Nakkikone\NakkikoneBackend\Nakkikone.WebApi\Nakkikone.Core\obj\Debug\net5.0\Nakkikone.Core.AssemblyInfo.cs
+C:\Repos\Nakkikone\NakkikoneBackend\Nakkikone.WebApi\Nakkikone.Core\obj\Debug\net5.0\Nakkikone.Core.csproj.CoreCompileInputs.cache

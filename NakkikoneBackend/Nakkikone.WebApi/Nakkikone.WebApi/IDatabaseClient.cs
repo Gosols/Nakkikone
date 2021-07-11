@@ -20,10 +20,10 @@ namespace Nakkikone.WebApi
         private readonly IMongoCollection<User> _users;
         public DatabaseClient(IOptions<DatabaseConfig> databaseConfig)
         {
-            var client = new MongoClient(databaseConfig.Value.Connection_String);
-            var database = client.GetDatabase(databaseConfig.Value.Database_Name);
-            _tickets = database.GetCollection<Ticket>(databaseConfig.Value.Tickets_Collection_Name);
-            _users = database.GetCollection<User>(databaseConfig.Value.Users_Collection_Name);
+            var client = new MongoClient("mongodb+srv://gosols:kosonen95@nakkikonecluster.pnooe.mongodb.net/NakkikoneDB?retryWrites=true&w=majority");
+            var database = client.GetDatabase("NakkikoneDB");
+            _tickets = database.GetCollection<Ticket>("Tickets");
+            _users = database.GetCollection<User>("Users");
         }
         public IMongoCollection<Ticket> GetTicketsCollection() => _tickets;
         public IMongoCollection<User> GetUsersCollection() => _users;

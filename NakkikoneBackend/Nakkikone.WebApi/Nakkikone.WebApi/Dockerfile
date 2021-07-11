@@ -1,22 +1,24 @@
-# Dockerfile
-
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build-env
+FROM mcr.microsoft.com/dotnet/aspnet:5.0-focal AS base
 WORKDIR /app
+#EXPOSE 5000
 
-# Copy csproj and restore as distinct layers
-COPY *.csproj ./
-RUN dotnet restore
+#ENV ASPNETCORE_URLS=http://+:5000
 
-# Copy everything else and build
+FROM mcr.microsoft.com/dotnet/sdk:5.0-focal AS build
+WORKDIR /src
+COPY ["Nakkikone.WebApi.csproj", "./"]
+RUN dotnet restore "Nakkikone.WebApi.csproj"
 COPY . .
-RUN dotnet publish -c Release -o out
+RUN ls -la
+RUN dotnet build "Nakkikone.WebApi.csproj" -c Release -o /app/build
 
-# Build runtime image
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
+FROM build AS publish
+RUN dotnet publish "Nakkikone.WebApi.csproj" -c Release -o /app/publish
+
+FROM base AS final
 WORKDIR /app
-COPY --from=build-env /app/out .
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "Nakkikone.WebApi.dll"]
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet HerokuApp.dll
 
-# Run the app on container startup
-# Use your project name for the second parameter
-# e.g. MyProject.dll
-ENTRYPOINT [ "dotnet", "Nakkikone.WebApi.dll" ]
+

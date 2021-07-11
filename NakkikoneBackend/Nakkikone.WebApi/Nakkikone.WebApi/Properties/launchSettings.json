@@ -1,37 +1,39 @@
 ﻿{
-    "$schema": "http://json.schemastore.org/launchsettings.json",
-    "iisSettings": {
-        "windowsAuthentication": false,
-        "anonymousAuthentication": true,
-        "iisExpress": {
-            "applicationUrl": "http://localhost:9819",
-            "sslPort": 44313
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:9819",
+      "sslPort": 44313
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+        "environmentVariables": {
+            "ASPNETCORE_ENVIRONMENT": "Development",
+            "DATABASE_NAME": "NakkikoneDB",
+            "TICKETS_COLLECTION_NAME": "Tickets",
+            "USERS_COLLECTION_NAME": "Users",
+            "CONNECTION_STRING": "mongodb+srv://gosols:kosonen95@nakkikonecluster.pnooe.mongodb.net/NakkikoneDB?retryWrites=true&w=majority"
         }
     },
-    "profiles": {
-        "IIS Express": {
-            "commandName": "IISExpress",
-            "launchBrowser": true,
-            "launchUrl": "swagger",
-            "environmentVariables": {
-                "ASPNETCORE_ENVIRONMENT": "Development",
-                "DATABASE_NAME": "NakkikoneDB",
-                "TICKETS_COLLECTION_NAME": "Tickets",
-                "USERS_COLLECTION_NAME": "Users"
-            }
-        },
-        "Nakkikone.WebApi": {
-            "commandName": "Project",
-            "dotnetRunMessages": "true",
-            "launchBrowser": true,
-            "launchUrl": "swagger",
-            "applicationUrl": "https://localhost:5001;http://localhost:5000",
-            "environmentVariables": {
-                "ASPNETCORE_ENVIRONMENT": "Development",
-                "DATABASE_NAME": "NakkikoneDB",
-                "TICKETS_COLLECTION_NAME": "Tickets",
-                "USERS_COLLECTION_NAME": "Users"
-            }
+    "Nakkikone.WebApi": {
+      "commandName": "Project",
+      "dotnetRunMessages": "true",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "https://0.0.0.0:5001;http://0.0.0.0:5000",
+        "environmentVariables": {
+            "ASPNETCORE_ENVIRONMENT": "Development",
+            "DATABASE_NAME": "NakkikoneDB",
+            "TICKETS_COLLECTION_NAME": "Tickets",
+            "USERS_COLLECTION_NAME": "Users",
+            "CONNECTION_STRING": "mongodb+srv://gosols:kosonen95@nakkikonecluster.pnooe.mongodb.net/NakkikoneDB?retryWrites=true&w=majority"
         }
     }
+  }
 }

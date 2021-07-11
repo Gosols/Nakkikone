@@ -38,4 +38,4 @@ C:\Repos\Nakkikone\NakkikoneBackend\Nakkikone.WebApi\Nakkikone.WebApi\bin\Debug\
 C:\Repos\Nakkikone\NakkikoneBackend\Nakkikone.WebApi\Nakkikone.WebApi\bin\Debug\net5.0\runtimes\linux\native\libmongocrypt.so
 C:\Repos\Nakkikone\NakkikoneBackend\Nakkikone.WebApi\Nakkikone.WebApi\bin\Debug\net5.0\runtimes\osx\native\libmongocrypt.dylib
 C:\Repos\Nakkikone\NakkikoneBackend\Nakkikone.WebApi\Nakkikone.WebApi\bin\Debug\net5.0\runtimes\win\native\mongocrypt.dll
-C:\Repos\Nakkikone\NakkikoneBackend\Nakkikone.WebApi\Nakkikone.WebApi\obj\Debug\net5.0\Nakkikone.WebApi.csprojAssemblyReference.cache
+C:\Repos\Nakkikone\NakkikoneBackend\Nakkikone.WebApi\Nakkikone.WebApi\obj\Debug\net5.0\Nakkikone.WebApi.csproj.AssemblyReference.cache

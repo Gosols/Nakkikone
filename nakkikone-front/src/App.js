@@ -1,5 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+
+/*
+
+GET
+POST
+PUT
+DELETE
+
+https://nakkikone-app.herokuapp.com/tickets/{id} 
+https://nakkikone-app.herokuapp.com/users/{id} 
+ 
+ */
 
 function App() {
   return (

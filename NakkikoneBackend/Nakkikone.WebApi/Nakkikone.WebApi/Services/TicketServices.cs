@@ -1,6 +1,5 @@
 ﻿using MongoDB.Driver;
 using Nakkikone.WebApi.Models;
-using System;
 using System.Collections.Generic;
 
 namespace Nakkikone.WebApi.Services

@@ -18,6 +18,7 @@ namespace Nakkikone.WebApi.Models
         public string Type { get; set; } // e.g. bug, feature
         public string Status { get; set; } // e.g. in progress
         public double EstimationInHours { get; set; }
+        public User AssignedTo { get; set; }
         public List<Comment> Comments { get; set; } // We'll see if I keep this
     }
 }

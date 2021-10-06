@@ -1,15 +1,21 @@
 import React, { useState } from "react";
-import { Paper } from "@material-ui/core";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import { Button } from "@material-ui/core";
-import DialogActions from "@material-ui/core/DialogActions";
-import Dialog from "@material-ui/core/Dialog";
+
+import {
+  Paper,
+  DialogTitle,
+  DialogContent,
+  Button,
+  DialogActions,
+  Dialog,
+} from "@material-ui/core";
+
 import { Skeleton } from "@material-ui/lab";
 import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import EditRoundedIcon from "@material-ui/icons/EditRounded";
+import TicketModal from "./TicketModal";
+import { databaseService } from "../functions/databaseService";
 
-export const Ticket = ({ text, skeleton }) => {
+export const Ticket = ({ data, skeleton }) => {
   const [open, setOpen] = useState(false);
   const [isMouseOver, setIsMouseOver] = useState(false);
 
@@ -26,7 +32,13 @@ export const Ticket = ({ text, skeleton }) => {
           <EditRoundedIcon onClick={toggleOpen} style={{ color: "#00c853" }} />
           <DeleteRoundedIcon
             color="secondary"
-            onClick={() => console.log("gayyyy")}
+            onClick={() =>
+              window.confirm(
+                "Are you sure you want to delete this ticket? (" + data.id + ")"
+              )
+                ? databaseService.deleteTicket(data.id)
+                : 0
+            }
           />
         </div>
       );
@@ -55,27 +67,25 @@ export const Ticket = ({ text, skeleton }) => {
       onMouseLeave={() => setIsMouseOver(false)}
       onMouseEnter={() => setIsMouseOver(true)}
     >
-      <div className="ticketBody">
-        <p className="ticketParagraph">{text}</p>
+      <div onClick={() => console.log("hellooo")} className="ticketBody">
+        <p className="ticketParagraph">{data.textContent}</p>
       </div>
       <div className="deleteButton">
         <ShowButtons />
       </div>
-      <Dialog
-        open={open}
-        onClose={toggleOpen}
-        aria-labelledby="ticket-detail-dialog"
-      >
-        <DialogTitle id="ticket-dialog-title">Edit ticket</DialogTitle>
-        <DialogContent>
-          <textarea defaultValue={text} />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={toggleOpen} color="primary">
-            Save changes
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <TicketModal
+        toggleOpenModal={toggleOpen}
+        openModal={open}
+        title="Edit ticket"
+        preCategory={data.category}
+        preDetails={data.textContent}
+        preEstimation={data.estimationInHours}
+        preLevel={data.level}
+        preType={data.type}
+        id={data.id}
+        creationDate={data.creationDate}
+        status={data.status}
+      />
     </Paper>
   );
 };

@@ -1,25 +1,32 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Paper } from "@material-ui/core";
+import { Grid, Paper, Button } from "@material-ui/core";
+
 import "../styles/styles.css";
 import { Ticket } from "./Ticket";
+import { databaseService } from "../functions/databaseService";
+import NewTicketButton from "./NewTicketButton";
 
-import { fetchTickets } from "../functions/fetchFromDatabase";
-
-export const Board = (props) => {
-  const [ticketData, setTicketData] = useState();
+export const Board = ({ activeUser }) => {
+  const [ticketsData, setTicketsData] = useState();
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
-    fetchTickets().then((res) => setTicketData(res));
+    databaseService.fetchTickets().then((res) => setTicketsData(res));
   }, []);
 
+  const toggleOpenModal = () => {
+    setOpenModal(!openModal);
+  };
+
   const RenderTickets = ({ status }) => {
-    if (ticketData !== undefined) {
+    if (ticketsData !== undefined) {
       return (
         <div>
-          {ticketData.map((ticket) => {
+          {ticketsData.map((ticket) => {
             if (ticket.status === status) {
-              return <Ticket key={ticket.id} text={ticket.textContent} />;
+              return <Ticket key={ticket.id} data={ticket} />;
             }
+            return;
           })}
         </div>
       );
@@ -36,41 +43,48 @@ export const Board = (props) => {
   };
 
   return (
-    <div className="board">
-      <Grid item xs={12} className="gridContainer">
-        <Grid container justifyContent="center" spacing={2}>
-          <Grid item>
-            <Paper className="column">
-              <div className="columnHeader">
-                <h2>New</h2>
-              </div>
-              <div className="ticketListContainer">
-                <RenderTickets status="new" />
-              </div>
-            </Paper>
-          </Grid>
-          <Grid item>
-            <Paper className="column">
-              <div className="columnHeader">
-                <h2>In progress</h2>
-              </div>
-              <div className="ticketListContainer">
-                <RenderTickets status="inProgress" />
-              </div>
-            </Paper>
-          </Grid>
-          <Grid item>
-            <Paper className="column">
-              <div className="columnHeader">
-                <h2>Done</h2>
-              </div>
-              <div className="ticketListContainer">
-                <RenderTickets status="done" />
-              </div>
-            </Paper>
+    <div>
+      <NewTicketButton
+        openModal={openModal}
+        toggleOpenModal={toggleOpenModal}
+        activeUser={activeUser}
+      />
+      <div className="board">
+        <Grid item xs={12} className="gridContainer">
+          <Grid container justifyContent="center" spacing={2}>
+            <Grid item>
+              <Paper className="column">
+                <div className="columnHeader">
+                  <h2>New</h2>
+                </div>
+                <div className="ticketListContainer">
+                  <RenderTickets status="New" />
+                </div>
+              </Paper>
+            </Grid>
+            <Grid item>
+              <Paper className="column">
+                <div className="columnHeader">
+                  <h2>In progress</h2>
+                </div>
+                <div className="ticketListContainer">
+                  <RenderTickets status="In Progress" />
+                </div>
+              </Paper>
+            </Grid>
+            <Grid item>
+              <Paper className="column">
+                <div className="columnHeader">
+                  <h2>Done</h2>
+                </div>
+                <div className="ticketListContainer">
+                  <RenderTickets status="Done" />
+                </div>
+              </Paper>
+            </Grid>
           </Grid>
         </Grid>
-      </Grid>
+      </div>
     </div>
   );
 };

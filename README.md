@@ -1,2 +1,3 @@
 # Nakkikone
 Project for my thesis. More info coming later...
+UPDATE: no more info coming lol.
